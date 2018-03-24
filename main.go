@@ -10,6 +10,7 @@ var DB = make(map[string]string)
 
 func pay(c *gin.Context) {
 	conn, err := redis.DialURL("redis://localhost:7481")
+	defer conn.Close()
 	if err != nil {
 		c.JSON(500,"Internal Server Error")
 		return
